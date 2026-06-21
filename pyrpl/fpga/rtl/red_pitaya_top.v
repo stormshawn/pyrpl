@@ -221,6 +221,8 @@ red_pitaya_ps i_ps (
   .axi1_wrdy_o   (axi1_wrdy   ),  .axi0_wrdy_o   (axi0_wrdy   )   // system write ready
 );
 
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // system bus decoder & multiplexer (it breaks memory addresses into 8 regions)
 ////////////////////////////////////////////////////////////////////////////////
@@ -527,7 +529,9 @@ red_pitaya_dsp i_dsp (
   .sys_ren         (  sys_ren[3]                 ),  // read enable
   .sys_rdata       (  sys_rdata[ 3*32+31: 3*32]  ),  // read data
   .sys_err         (  sys_err[3]                 ),  // error indicator
-  .sys_ack         (  sys_ack[3]                 )   // acknowledge signal
+  .sys_ack         (  sys_ack[3]                 ),   // acknowledge signal
+
+  .ext_trigger_i ( exp_p_in[0] ) // this is for the external trigger for the pause functionality of the pid, DIO0_P gates PID0 pause
 );
 
 // the ams module has been obsoleted by PWM control via DSP module (outputs)
