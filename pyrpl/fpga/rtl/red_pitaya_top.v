@@ -531,7 +531,9 @@ red_pitaya_dsp i_dsp (
   .sys_err         (  sys_err[3]                 ),  // error indicator
   .sys_ack         (  sys_ack[3]                 ),   // acknowledge signal
 
-  .ext_trigger_i ( exp_p_in[0] ) // this is for the external trigger for the pause functionality of the pid, DIO0_P gates PID0 pause
+  .ext_trigger0_i ( exp_p_in[0] ) // this is for the external trigger for the pause functionality of the pid, DIO0_P gates PID0 pause
+  .ext_trigger1_i ( exp_p_in[1] ) // this is for the external trigger for the pause functionality of the pid, DIO1_P gates PID1 pause
+
 );
 
 // the ams module has been obsoleted by PWM control via DSP module (outputs)

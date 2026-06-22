@@ -58,7 +58,10 @@ module red_pitaya_dsp #(
    // signals
    input                 clk_i           ,  //!< processing clock
    input                 rstn_i          ,  //!< processing reset - active low
-   input                 ext_trigger_i   ,  // external DIO0_P trigger, used for the pid pause functionality
+   //input                 ext_trigger_i   ,  // external DIO0_P trigger, used for the pid pause functionality
+
+   input ext_trigger0_i, // external DIO0_P trigger, used for the pid pause functionality
+   input ext_trigger1_i, // external DIO1_P trigger, used for the pid pause functionality
    input      [ 14-1: 0] dat_a_i         ,  //!< input data CHA
    input      [ 14-1: 0] dat_b_i         ,  //!< input data CHB
    output     [ 14-1: 0] dat_a_o         ,  //!< output data CHA
@@ -155,8 +158,8 @@ wire            module_ack   [MODULES-1:0];
 // this is for the external trigger for the pause functionality of the pid
 wire [3-1:0] pid_sync;
 
-assign pid_sync[0] = sync[0] & ext_trigger_i;  // PID0 gated by DIO0_P
-assign pid_sync[1] = sync[1];                  // PID1 normal
+assign pid_sync[0] = sync[0] & ext_trigger0_i;  // PID0 gated by DIO0_P
+assign pid_sync[1] = sync[1] & ext_trigger1_i;  // PID1 gated by DIO1_P
 assign pid_sync[2] = sync[2];                  // PID2 normal
 
 
