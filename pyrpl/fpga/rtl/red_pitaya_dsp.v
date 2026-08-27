@@ -158,8 +158,8 @@ wire            module_ack   [MODULES-1:0];
 // this is for the external trigger for the pause functionality of the pid
 wire [3-1:0] pid_sync;
 
-assign pid_sync[0] = sync[0] & ext_trigger0_i;  // PID0 gated by DIO0_P
-assign pid_sync[1] = sync[1] & ext_trigger1_i;  // PID1 gated by DIO1_P
+assign pid_sync[0] = sync[0] & ~ext_trigger0_i;  // PID0 gated by DIO0_P
+assign pid_sync[1] = sync[1] & ~ext_trigger1_i;  // PID1 gated by DIO1_P
 assign pid_sync[2] = sync[2];                  // PID2 normal
 
 
